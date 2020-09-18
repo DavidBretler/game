@@ -52,3 +52,6 @@ def master_move():
               places[i][j] = True  # taken
 
               places = [[True] * 9 for i in range(3)]  # true if the place is taken
+
+              # for i in range(number_of_enemies):
+              #    enemysSpeed.append(20)

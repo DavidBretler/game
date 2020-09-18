@@ -5,15 +5,16 @@ import winsound
 # add sound
 import random
 
-#  Set up the screen
+# Define bullet state
+# ready - ready to fire
+# fire - bullet is firing
 bulletstate = "ready"
 enemy_bullet_state = "ready"
 
 import playsound #as playsound
 
-def clickLeft2(x,y):
-    run()
 def rungame():
+    #  Set up the screen
     wn = turtle.Screen()
     wn.bgcolor("black")
     wn.title("Space Invaders virus attack !!!")
@@ -78,12 +79,6 @@ def rungame():
     number_of_enemies = 27
     # Create an empty list of enemies
     enemies = []
-    enemysSpeed=[]
-
-    # Add enemies speed to the list
-    #for i in range(number_of_enemies):
-    #    enemysSpeed.append(20)
-
     # Add enemies to the list
     for i in range(number_of_enemies):
         enemies.append(turtle.Turtle())
@@ -115,7 +110,7 @@ def rungame():
     enemy_bullet.shape("drop.gif")
     enemy_bullet.speed(0)
     enemy_bullet.hideturtle()
-    enemy_bullet_speed=0.1
+    enemy_bullet_speed=0.15
 
     # Create the player's bullet
     bullet = turtle.Turtle()
@@ -128,10 +123,6 @@ def rungame():
     bullet.shapesize(0.5, 0.5)
     bullet.hideturtle()
     bulletspeed = 7
-
-    # Define bullet state
-    # ready - ready to fire
-    # fire - bullet is firing
 
 
     #  Move the player left and right
@@ -222,7 +213,6 @@ def rungame():
             break
 
         for enemy in enemies:
-                    # if enemy_bullet_state=="ready":
                     fire_enemy_bullet(enemy)
                     #  Move the enemy
                     x = enemy.xcor()
@@ -257,7 +247,6 @@ def rungame():
                         bullet.hideturtle()
                         bulletstate = "ready"
                         bullet.setposition(0, -400)
-                        #  "kill" the enemy enemy.setposition(0,10000)
                         #  Reset the enemy in new random position
                         random_place(enemy)
                         #  Update the score
@@ -265,8 +254,6 @@ def rungame():
                         scorestring = str(score)
                         score_pen.clear()
                         score_pen.write(scorestring, False, align="left", font=("Arial", 14, "normal"))
-                       # enemy_bullet.hideturtle()
-                        #enemy_bullet_state = "ready"
                     # if enemy hit lost all lifes
                     if isCollision(player, enemy) or lives<=0 :
                         player.hideturtle()
@@ -278,8 +265,6 @@ def rungame():
                    # if drop hit lost one life
                     if isCollision(player, enemy_bullet):
                         playsound.playsound("explosion.wav",False)
-                       # play_sound("explosion.wav")
-
                         enemy_bullet.hideturtle()
                         enemy_bullet_state = "ready"
                         lives -= 1
@@ -302,13 +287,13 @@ def rungame():
              key = input("press enter to continue")
              exit()
 
-            #  Move the bullet
+        # Move the bullet
         if bulletstate == "fire":
             y = bullet.ycor()
             y += bulletspeed
             bullet.sety(y)
 
-            #  Check to see if the  bullet has gone to the top
+        # Check to see if the  bullet has gone to the top
         if bullet.ycor() > 275:
             bullet.hideturtle()
             bulletstate = "ready"
@@ -330,12 +315,11 @@ def clickRight(x,y):
     rungame()
 def run():
     wn1.listen()
-    #wn1.register_shape("start.gif")
     wn1.title("Space Invaders virus attack ")
     wn1.bgpic("start.gif")
+    # if click active event to start the game
     wn1.onscreenclick(clickLeft,1)
     wn1.onscreenclick(clickRight,3)
-
     wn1.mainloop()
 if __name__ =="__main__":
     run()
