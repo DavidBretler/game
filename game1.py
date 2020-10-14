@@ -100,7 +100,7 @@ def rungame():
                 enemy_start_y -=60
                 enemy_number= 0
 
-    enemy_speed=0.3
+    enemy_speed=0.28
 
     # Create the enemy's bullet
     enemy_bullet=turtle.Turtle()
@@ -110,7 +110,7 @@ def rungame():
     enemy_bullet.shape("drop.gif")
     enemy_bullet.speed(0)
     enemy_bullet.hideturtle()
-    enemy_bullet_speed=0.15
+    enemy_bullet_speed=0.14
 
     # Create the player's bullet
     bullet = turtle.Turtle()
